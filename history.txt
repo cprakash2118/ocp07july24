@@ -1,0 +1,246 @@
+    1  sudo reboot
+    2  oc login -u admin -p redhatocp
+    3  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+    4  oc whoami
+    5  oc get pods
+    6  logou
+    7  logout
+    8  exit
+    9  oc whoami
+   10  exit
+   11  logout
+   12  whoami
+   13  oc whoami
+   14  cler
+   15  clear
+   16  lab start auth-providers
+   17  oc whoamio
+   18  oc whoami
+   19  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+   20  oc whoami
+   21  htpasswd -c -B -b  ~/DO280/labs/auth-providers/htpasswd new_admin redhat
+   22  htpasswd  -b  ~/DO280/labs/auth-providers/htpasswd new_developer developer
+   23  cat ~/DO280/labs/auth-providers/htpasswd
+   24  oc create secret 
+   25  oc create secret generic localusers --from-file htpasswd=~/DO280/labs/auth-providers/htpasswd -n openshift-config
+   26  oc adm policy add-cluster-role-to-user cluster-admin new_admin
+   27  oc get oauth/cluster -o yaml > ~/DO280/labs/auth-providers/oauth.yaml
+   28  vim ~/DO280/labs/auth-providers/oauth.yaml
+   29  oc whoami
+   30  exit
+   31  whoami
+   32  oc whoami
+   33  mkdir work
+   34  cd work
+   35  history
+   36  pwd
+   37  ll
+   38  oc whoami
+   39  htpasswd -c -B -b httpd_upload_file.txt user1 redhat
+   40  cat httpd_upload_file.txt 
+   41  htpasswd  -B -b httpd_upload_file.txt user2 redhat
+   42  cat httpd_upload_file.txt 
+   43  htpasswd  -B -b httpd_upload_file.txt user3 redhat
+   44  htpasswd  -B -b httpd_upload_file.txt user4 redhat
+   45  htpasswd  -B -b httpd_upload_file.txt user5 redhat
+   46  cat httpd_upload_file.txt 
+   47  oc create secret generic htpass-secret --from-file htpasswd=httpd_upload_file.txt -n openshift-config
+   48  kubectl create secret generic htpass-secret-k8s --from-file htpasswd=httpd_upload_file.txt -n openshift-config
+   49  oc get secrets htpass-secret -n openshift-config
+   50  oc get secrets htpass-secret-k8s -n openshift-config
+   51  oc get secrets htpass-secret -n openshift-config -o yaml 
+   52  oc get oauth/cluster -o yaml> oauth.yaml
+   53  vim oauth.yaml 
+   54  oc apply -f oauth.yaml 
+   55  oc login -u user1 -p redhat https://api.ocp4.example.com:6443
+   56  watch oc get pods -n openshift-authentication
+   57  oc login -u user1 -p redhat https://api.ocp4.example.com:6443
+   58  oc whoami
+   59  oc get nodes
+   60  oc login -u user2 -p redhat https://api.ocp4.example.com:6443
+   61  oc whoami
+   62  oc login -u user3 -p redhat https://api.ocp4.example.com:6443
+   63  oc whoami
+   64  oc get user
+   65  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+   66  oc whoami
+   67  oc get user
+   68  oc login -u user4 -p redhat https://api.ocp4.example.com:6443
+   69* oc login -u u -p redhat https://api.ocp4.example.com:6443
+   70  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+   71  oc whoami
+   72  oc get user
+   73  ll
+   74  cat httpd_upload_file.txt 
+   75  cp -rpv httpd_upload_file.txt httpd_upload_file-2.txt 
+   76  vim httpd_upload_file-2.txt 
+   77  cat httpd_upload_file-2.txt 
+   78  oc create secret generic htpass-apps --from-file htpasswd=httpd_upload_file-2.txt -n openshift-config
+   79  oc get secrets -n openshift-config | grep htpass
+   80  ll
+   81  vim oauth.yaml 
+   82  oc get oauth/cluster >> oauth.yaml 
+   83  oc get oauth/cluster > oauth.yaml 
+   84  oc get oauth/cluster -o yaml > oauth.yaml 
+   85  vim oauth.yaml 
+   86  oc apply -f oauth.yaml 
+   87  watch oc get pods
+   88  watch oc get pods -n openshift-authentication
+   89  oc get pods
+   90  oc get pods -n openshift-authentication
+   91  oc delete pod oauth-openshift-ffdcf5f68-7fvb2
+   92  oc delete pod oauth-openshift-ffdcf5f68-7fvb2 -n openshift-authentication
+   93  oc get pods -n openshift-authentication
+   94  watch oc get pods -n openshift-authentication
+   95  oc login -u user6 -p redhat https://api.ocp4.example.com:6443
+   96  oc login -u user7 -p redhat https://api.ocp4.example.com:6443
+   97  oc login -u user8 -p redhat https://api.ocp4.example.com:6443
+   98  oc login -u user9 -p redhat https://api.ocp4.example.com:6443
+   99  oc login -u user10 -p redhat https://api.ocp4.example.com:6443
+  100  oc login -u admin -p redhatocp https://api.ocp4.example.com:6443
+  101  oc get user
+  102  oc get user | grep sre
+  103  oc get user | grep apps
+  104  oc get user | grep app
+  105  oc adm groups new sre_grp
+  106  oc adm groups new app_grp
+  107  oc get groups.user.openshift.io 
+  108  oc get groups.user.openshift.io | grep grp
+  109  oc get user | grep sre
+  110  oc adm groups add-users --help | less
+  111  #oc adm groups add-users my-group user1 user2
+  112  oc adm groups add-users sre_grp user1 user2 user3 user4 user5
+  113  oc get groups.user.openshift.io | grep grp
+  114  oc adm groups add-users app_grp user6 user7 user8 user9 user10
+  115  oc get groups.user.openshift.io | grep grp
+  116  oc new-project app-project 
+  117  oc project -q
+  118  oc get all
+  119  oc whoam i
+  120  oc whoami
+  121  oc adm policy add-cluster-role-to-group --help | less
+  122  oc adm policy add-cluster-role-to-group cluster-admin sre_grp
+  123  oc login -u user1 -p redhat
+  124  oc whoami
+  125  oc get nodes
+  126  oc auth cani
+  127  oc auth can-i create node
+  128  oc auth can-i create user
+  129  oc auth can-i create group
+  130  oc login -u user6 -p redhat
+  131  oc whoami
+  132  oc auth can-i 
+  133  oc auth can-i create user
+  134  oc auth can-i create group
+  135  oc auth can-i create node
+  136  oc login -u user1 -p redhat
+  137  oc whoami
+  138  oc project -q
+  139  oc project app-project 
+  140  oc project -q
+  141  oc adm policy add-role-to-user admin user6
+  142  oc login -u user6 -p redhat
+  143  oc get projects
+  144  oc login -u user7 -p redhat
+  145  oc get projects
+  146  oc login -u user1 -p redhat
+  147  oc project app-project 
+  148  oc describe clusterrolebindings | grep self
+  149  oc describe clusterrolebindings self-provisioners 
+  150  oc adm policy remove-cluster-role-from-group self-provisioners system:authenticated:oauth
+  151  oc whoami
+  152  oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+  153  oc describe clusterrolebindings self-provisioners 
+  154  oc adm policy add-cluster-role-to-user self-provisioner user7
+  155  oc login -u user8 -p redhatocp
+  156  oc login -u user8 -p redhat
+  157  oc login -u user6 -p redhat
+  158  oc get project
+  159  oc adm policy add-role-to-user view user10 -n app-project
+  160  oc adm policy add-role-to-user edit user8 -n app-project
+  161  oc adm policy add-role-to-user edit user9 -n app-project
+  162  oc whoami
+  163  oc login -u user10 -p redhat
+  164  oc get project
+  165  oc new-app gmail httpd:2.4
+  166  oc whoami
+  167  oc new-app gmail httpd
+  168  oc login -u user9 -p redhat
+  169  oc new-app gmail httpd
+  170  oc login -u user10 -p redhat
+  171  oc new-app --name gmail httpd
+  172  oc login -u user9 -p redhat
+  173  oc new-app --name gmail httpd
+  174  oc get pods
+  175  oc get svc
+  176  oc get deployment
+  177  oc get replicaset
+  178  oc whoami
+  179  oc get pods
+  180  oc get svc
+  181  oc get route
+  182  oc expose service gmail --hostname delwin.apps.ocp4.example.com
+  183  oc get nodes
+  184  oc get route
+  185  curl delwin.apps.ocp4.example.com
+  186  oc login -u user6 -p redhat
+  187  oc whoami 
+  188  oc get users
+  189  oc get pods
+  190  oc new-app --name demo-app quay.io/cprakash2118/april-java-unzip-httpd-image-02
+  191  oc get pods
+  192  oc create serviceaccount app-sa 
+  193  #oc adm policy add-scc-to-user anyuid -z app-sa
+  194  oc get pods
+  195  oc logs  demo-app-7f958779df-fzd5z
+  196  ls -l /run/sshd.pid 
+  197  oc adm policy add-scc-to-user anyuid -z app-sa
+  198  oc login -u user1 -p redhat
+  199  oc adm policy add-scc-to-user anyuid -z app-sa
+  200  oc set env --help |less
+  201  # oc set env --from=secret/mysecret dc/myapp
+  202  oc set serviceaccount --help |less
+  203  #oc set serviceaccount deployment nginx-deployment serviceaccount1
+  204  oc set serviceaccount deployment gmail app-sa 
+  205  oc get pods
+  206  oc set serviceaccount deployment demo-app app-sa 
+  207  oc get pods
+  208  oc scale --replicas=3 deployment demo-app 
+  209  oc get pods
+  210  oc rsh  demo-app-6d845b879c-8m6dl
+  211  oc rsh  demo-app-6d845b879c-jdpw8 
+  212  oc rsh demo-app-6d845b879c-wv89x
+  213  oc get pods | grep demo 
+  214  oc get service | grep demo 
+  215  oc get deployment| grep demo 
+  216  oc expose service demo-app 
+  217  oc get route 
+  218  curl http:/ldemo-app-app-project.apps.ocp4.example.com
+  219  curl http://demo-app-app-project.apps.ocp4.example.com
+  220  nslookup cp.apps.ocp4.example.com
+  221  #*apps.ocp4.example.com
+  222  #*.apps.ocp4.example.com
+  223  history 
+  224  oc whoami 
+  225  oc login -u user6 -p redhat
+  226  oc new-project demo10
+  227  oc login -u user7 -p redhat
+  228  oc project app-project
+  229  oc new-project demo100
+  230  oc login -u user6 -p redhat
+  231  oc adm policy add-role-to-user edit user7
+  232  oc login -u user7 -p redhat
+  233  oc get pod
+  234  oc get deployment
+  235  oc delete deployment gmail 
+  236  oc get deployment
+  237  oc whoami
+  238  oc describe rolebindings.rbac.authorization.k8s.io | less
+  239  oc login -u user1 -p redhat
+  240  oc describe rolebindings.rbac.authorization.k8s.io | less
+  241  oc describe clusterrolebindings.rbac.authorization.k8s.io | less
+  242  oc whoami --show-console 
+  243  pwd
+  244  ll
+  245  git clone https://github.com/cprakash2118/ocp07july24
+  246  history > ocp07july24/history.txt 
